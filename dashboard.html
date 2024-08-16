@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook</title>
+    <link rel="shortcut icon" type="image" href="https://i.pinimg.com/550x/f7/99/20/f79920f4cb34986684e29df42ec0cebe.jpg">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        /* Reset and global styles */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: Arial, sans-serif;
+          background: #f0f2f5;
+          color: #1d2129;
+        }
+
+        /* Header styles */
+        header.navbar {
+          background-color: #3b5998;
+          color: #fff;
+          padding: 10px 0;
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 1000;
+        }
+
+        .container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .navbar-brand .logo {
+          font-size: 30px;
+          font-weight: bold;
+          color: #fff;
+          text-decoration: none;
+        }
+
+        .navbar-search input {
+          border: none;
+          padding: 8px;
+          border-radius: 20px;
+          width: 250px;
+          outline: none;
+        }
+
+        .navbar-nav a {
+          color: #fff;
+          text-decoration: none;
+          margin: 0 15px;
+          font-size: 18px;
+        }
+
+        .navbar-nav a:hover {
+          text-decoration: underline;
+        }
+
+        .navbar-user {
+          display: flex;
+          align-items: center;
+        }
+
+        .profile-pic {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+
+        .user-name {
+          color: #fff;
+          text-decoration: none;
+          font-size: 18px;
+        }
+
+        .sign-out-btn {
+          background-color: #1877f2;
+          border: none;
+          border-radius: 20px;
+          color: #fff;
+          padding: 8px 16px;
+          font-size: 14px;
+          cursor: pointer;
+          font-weight: bold;
+          margin-left: 10px;
+          transition: background-color 0.3s ease;
+        }
+
+        .sign-out-btn:hover {
+          background-color: #145dbf;
+        }
+
+        /* Main content styles */
+        main.content {
+          margin-top: 80px; /* Account for fixed header */
+          padding: 15px;
+        }
+
+        /* Post creation form styles */
+        .post-creation {
+          background: #fff;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          padding: 10px;
+          margin-bottom: 5px;
+        }
+
+        .post-creation-header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 15px;
+        }
+
+        .post-profile-pic {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          margin-right: 15px;
+        }
+
+        .post-creation h2 {
+          font-size: 24px;
+          font-weight: 600;
+          color: #333;
+        }
+
+        #post-content {
+          width: 400px;
+          padding: 14px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          margin-bottom: 8px;
+          resize: vertical;
+          min-height: 70px;
+          font-size: 16px;
+          color: #333;
+          margin-right: 115px;
+        }
+
+        .post-options {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .post-btn {
+          padding: 10px 20px;
+          border: none;
+          background-color: #1877f2;
+          color: white;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: 600;
+          margin-right: 20px;
+        }
+
+        .post-btn:hover {
+          background-color: #1558b0;
+        }
+
+        .attachments {
+          display: flex;
+          align-items: center;
+        }
+
+        .upload-btn, .feeling-btn {
+          margin-right: 15px;
+          cursor: pointer;
+          font-size: 16px;
+          color: #1877f2;
+        }
+
+        .upload-input {
+          display: none;
+        }
+
+        /* Posts section styles */
+        .posts {
+          max-width: 600px;
+          margin: 0 auto;
+        }
+
+        .post {
+          background: #fff;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          padding: 20px;
+          margin-bottom: 20px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 15px;
+        }
+
+        .post-profile-pic {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          margin-right: 15px;
+        }
+
+        .post-user-name {
+          font-weight: 600;
+          color: #333;
+          font-size: 18px;
+        }
+
+        .post-content {
+          font-size: 16px;
+          color: #333;
+          line-height: 1.6;
+        }
+
+        .delete-btn {
+          background-color: #e5e5e5;
+          border: none;
+          border-radius: 4px;
+          color: #333;
+          padding: 5px 10px;
+          font-size: 14px;
+          cursor: pointer;
+          margin-left: auto;
+          transition: background-color 0.3s ease;
+        }
+
+        .delete-btn:hover {
+          background-color: #d4d4d4;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="#" class="logo">Facebook</a>
+            </div>
+            <div class="navbar-search">
+                <input type="text" placeholder="Search...">
+            </div>
+            <nav class="navbar-nav">
+                <a href="#">Home</a>
+                <a href="#">Friends</a>
+                <a href="#">Messages</a>
+                <a href="#">Notifications</a>
+                <a href="#">Profile</a>
+            </nav>
+            <div class="navbar-user">
+                <img src="img/profile-pic.webp" alt="User Profile Picture" class="profile-pic">
+                <a href="#" class="user-name">John Doe</a>
+                <button class="sign-out-btn" id="log-out">Log Out</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <section class="post-creation">
+            <div class="container">
+                <div class="post-creation-header">
+                    <img src="img/profile-pic.webp" alt="User Profile Picture" class="post-profile-pic">
+                    <h2>Create a Post</h2>
+                </div>
+                <form id="post-form">
+                    <div class="post-options">
+                        <textarea id="post-content" placeholder="What's on your mind?" rows="1"></textarea>
+                        <button type="submit" class="post-btn">Post</button>
+                        <div class="attachments">
+                            <label for="upload-photo" class="upload-btn">
+                                <i class="fa fa-camera"></i> Photo/Video
+                            </label>
+                            <input type="file" id="upload-photo" class="upload-input">
+                            <label for="add-feeling" class="feeling-btn">
+                                <i class="fa fa-smile"></i> Feeling/Activity
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    
+        <section class="posts">
+            <div class="post">
+                <div class="post-header">
+                    <img src="img/profile-pic.webp" alt="User Profile Picture" class="post-profile-pic">
+                    <span class="post-user-name">John Doe</span>
+                    <button class="delete-btn">Delete</button>
+                </div>
+                <p class="post-content">This is a sample post content.</p>
+            </div>
+            <!-- More posts can be dynamically added here -->
+        </section>
+    </main>
+    
+
+    <script type="module" src="dashboard.js"></script>
+</body>
+</html>
+
